@@ -14,3 +14,8 @@ This repository will give the user a blank working copy of an Angular website.
   - jQuery
   - Bootstrap
   - Angular Animate
+  
+# Default Pages
+  - Home 
+  - About
+  - Contact
