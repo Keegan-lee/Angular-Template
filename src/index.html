@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang='en' ng-app='app' ng-controller='mainController' ng-init='init()'>
+<head>
+	<title ng-bind="state.current.data.title"></title>
+
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<!-- <link rel="shortcut icon" href="favicon.ico" type="image/ico" /> -->
+
+	<!-- bower:css -->
+	<!-- endbower -->
+
+	<!-- inject:css -->
+	<!-- endinject -->
+
+	<!-- Firebase -->
+	<!-- <script src="https://www.gstatic.com/firebasejs/live/3.0/firebase.js"></script> -->
+</head>
+<body class='container-fluid'>
+
+	<div class='row'>	
+		<nav class='navbar navbar-default navbar-fixed-top navbar-inverse'>
+			<div class='container-fluid'>
+				<div class='navbar-header'>
+					<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#mobileNavbar">
+				        <span class="icon-bar"></span>
+				        <span class="icon-bar"></span>
+				        <span class="icon-bar"></span> 
+				    </button>
+					<a class='navbar-brand mobileBrand' ui-sref='home'>{{ title }}</a>
+				</div>
+
+				<div class='collapse navbar-collapse' id='mobileNavbar'>
+					<ul class="nav navbar-nav">
+						<li ng-repeat='r in routes'><a data-toggle="collapse" data-target="#mobileNavbar" ng-class='{ active: isActive(r.url, 1)}' ui-sref="{{ r.route }}">{{ r.name }}</a></li>			
+				    </ul>
+				</div>
+			</div>
+		</nav>
+
+		<div class='col-xs-12 col-sm-12 col-md-12 col-lg-12' id='view' ui-view>
+		</div> <!-- view col-md-12 -->
+	</div> <!-- row -->
+	<!-- bower:js -->
+	<!-- endbower -->
+
+	<!-- inject:js -->
+	<!-- endinject -->
+</body>
+</html>
