@@ -19,7 +19,10 @@ var srcPaths = {
 	src: './src/',
 	index: './src/index.html',
 	javascript: './src/js/*.js',
-	style: './src/style/*.{scss, sass}',
+	style: {
+		main: './src/style/main.{scss, sass}',
+		all: './src/style/**/*.{scss, sass}'
+	},
 	img: './src/img/**/*.*',
 	html: './src/templates/**/*.html',
 	php: './src/**/*.php',
@@ -41,7 +44,7 @@ var destPaths = {
 
 gulp.task('watch', function() {
 	gulp.watch(srcPaths.javascript, ['js']);
-	gulp.watch(srcPaths.style, ['style']);
+	gulp.watch(srcPaths.style.all, ['style']);
 	gulp.watch(srcPaths.html, ['html']);
 	gulp.watch(srcPaths.index, ['inject']);
 	gulp.watch(srcPaths.php, ['php']);
@@ -55,7 +58,7 @@ gulp.task('clean', function() {
 
 
 gulp.task('style', function() {
-	return gulp.src(srcPaths.style)
+	return gulp.src(srcPaths.style.main)
 		.pipe(sass())
 		.pipe(gulp.dest(destPaths.style.folder));
 });

@@ -1,0 +1,127 @@
+
+
+@mixin transition($args...) {
+	-webkit-transition: $args;
+	-moz-transition: $args;
+	-ms-transition: $args;
+	-o-transition: $args;
+	transition: $args;
+
+	& * {
+	  	-webkit-transition: $args;
+		-moz-transition: $args;
+		-ms-transition: $args;
+		-o-transition: $args;
+		transition: $args;
+	}
+
+
+}
+
+
+
+
+.list-inline {
+	margin:0;
+	display: inline;
+	padding:0;
+	li {
+		float: left;
+		margin-right:25px;
+		padding:10px;
+	}
+}
+
+.bulletless {
+	list-style-type: none;
+}
+
+.invert-hover {	
+	li {
+		// @include transition(color .5s ease);
+		&:hover {
+			background-color: black;	
+			cursor: pointer;
+			a {
+				color:white;
+			}
+		}		
+	}
+}
+
+.bounce-hover {
+	li {
+		@include transition(all .3s ease);
+		&:hover {
+			position:relative;
+			bottom:5px;
+		}
+	}
+}
+
+
+.middle-out  {
+	li {
+		a {
+			&:after {
+				margin:auto;
+			}
+		}
+	}
+}
+
+.border-bottom-hover {
+	li {
+		a {
+			&:after {
+				content:'';
+				display:block;
+				width:0;
+				height:2px;	
+				background-color: $black;				
+				@include transition(width .3s ease);
+			}		
+
+			&:hover {
+				&:after {
+					width:100%;					
+				}
+			}
+		}		
+	}
+}
+
+
+
+
+.menu-one {
+	ul {
+		@extend .list-inline;
+		@extend .bulletless;
+		@extend .invert-hover;
+		@extend .bounce-hover;		
+		li {
+			border: 1px solid $black;
+			border-radius: 25px;
+			a {
+				text-decoration: none;	
+				color:$black;			
+			}
+		}
+	}
+
+}
+
+.menu-two {	
+	ul {
+		@extend .list-inline;
+		@extend .bulletless;
+		@extend .border-bottom-hover;
+		li {
+			a {
+				color: $black;
+				text-decoration: none;
+			}
+		}
+	}
+}

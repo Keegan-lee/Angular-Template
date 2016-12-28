@@ -57,6 +57,15 @@ app.config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $ur
 			},
 			templateUrl: 'templates/contact.html',
 			authenticate: false
+		})
+		.state ('elements', {
+			url: '/elements',
+			data: {
+				title: "Elements",
+				main: true
+			},
+			templateUrl: 'templates/elements.html',
+			authenticate: false
 		});
 }]);
 

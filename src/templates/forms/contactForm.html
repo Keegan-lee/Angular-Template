@@ -1,0 +1,19 @@
+<div id='contactForm' ng-controller='contactFormController'>
+	<div class='col-md-4'>
+		<input ng-model='formData.name' autofocus placeholder="Name"></input>            
+		<input ng-model='formData.email' placeholder="Email"></input>
+		<input ng-model='formData.subject' placeholder="Subject"></input>
+	</div> <!-- col-md-offset-2 col-md-8 -->
+
+	<div class='col-md-8'>
+		<textarea ng-model='formData.message' placeholder="Your Message Here"></textarea>
+	</div>
+
+	<div class='col-md-12'>
+		<button ng-class='result' ng-click='submit($event)'>Send</button>
+	</div>
+
+	<div ng-if='submitClicked' id='resultMessage' class='col-md-12'>
+		<p ng-class='result'>{{ resultMessage }}</p>
+	</div>
+</div>
