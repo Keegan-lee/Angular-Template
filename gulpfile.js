@@ -19,6 +19,8 @@ var srcPaths = {
 	src: './src/',
 	index: './src/index.html',
 	javascript: './src/js/*.js',
+	controllers: './src/controllers/**/*.js',
+	services:'./src/services/**/*.js',
 	style: {
 		main: './src/style/main.{scss, sass}',
 		all: './src/style/**/*.{scss, sass}'
@@ -35,6 +37,9 @@ var destPaths = {
 	index: './public/index.html',
 	html: './public/templates/',
 	javascript: './public/js/',
+	controllers: './public/controllers/',
+	services: './public/services/',
+	services: './public/services/',
 	style: {
 		folder: './public/css/',
 		files: './public/css/*.css'
@@ -44,6 +49,7 @@ var destPaths = {
 
 gulp.task('watch', function() {
 	gulp.watch(srcPaths.javascript, ['js']);
+	gulp.watch(srcPaths.controllers, ['controllers']);
 	gulp.watch(srcPaths.style.all, ['style']);
 	gulp.watch(srcPaths.html, ['html']);
 	gulp.watch(srcPaths.index, ['inject']);
@@ -61,6 +67,18 @@ gulp.task('style', function() {
 	return gulp.src(srcPaths.style.main)
 		.pipe(sass())
 		.pipe(gulp.dest(destPaths.style.folder));
+});
+
+gulp.task('controllers', function() {
+	return gulp.src(srcPaths.controllers)
+		.pipe(minifyJS())
+		.pipe(gulp.dest(destPaths.controllers));
+});
+
+gulp.task('services', function() {
+	return gulp.src(srcPaths.services)
+		.pipe(minifyJS())
+		.pipe(gulp.dest(destPaths.services));
 });
 
 
@@ -102,7 +120,7 @@ gulp.task('npmInclude', function() {
 
 gulp.task('inject', ['npmInclude', 'style'], function() {
 
-	var injectFiles = gulp.src(srcPaths.npmJS.concat(srcPaths.npmCSS).concat(srcPaths.javascript).concat(destPaths.style.files));
+	var injectFiles = gulp.src(srcPaths.npmJS.concat(srcPaths.npmCSS).concat(srcPaths.javascript).concat(destPaths.style.files).concat(srcPaths.controllers).concat(srcPaths.services));
 	var injectOptions = {
 		addRootSlash : false,
 		ignorePath : ['public', 'src']
@@ -113,7 +131,7 @@ gulp.task('inject', ['npmInclude', 'style'], function() {
 		.pipe(gulp.dest(destPaths.dest));
 });
 
-gulp.task('default', ['clean', 'inject', 'html', 'htaccess', 'misc', 'php', 'img', 'watch', 'js', 'watch']);
+gulp.task('default', ['clean', 'inject', 'html', 'htaccess', 'misc', 'php', 'img', 'watch', 'js', 'controllers', 'services', 'watch']);
 
 
 
