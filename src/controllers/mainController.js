@@ -32,4 +32,9 @@ app.controller('mainController', ['$scope', '$state', '$location', '$rootScope',
 			}
 		}
 	};
+
+	$scope.test = function() {
+		console.log("Something");
+		return 1;
+	}
 }]);
