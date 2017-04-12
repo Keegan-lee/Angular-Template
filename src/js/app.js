@@ -66,24 +66,6 @@ app.config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $ur
 			},
 			templateUrl: 'templates/elements.html',
 			authenticate: false
-		})
-		.state ('tests', {
-			url: '/tests',
-			data: {
-				title: "Tests",
-				main: true
-			},
-			template: "<div ui-view></div>",
-			authenticate: false
-		})
-		.state ('tests.firebase', {
-			url: '/firebase',
-			data: {
-				title: "Firebase",
-				main: false
-			},
-			templateUrl: 'templates/tests/firebase.html',
-			authenticate: false
 		});
 }]);
 
